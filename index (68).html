@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+
+    <div>
+
+        <p>Search</p>
+        <input id="search-input" type="search" placeholder="Search..">
+        <p>Todo list app:</p>
+        <div>
+            <input class="task-input" type="text" placeholder="Add new task">
+            <button id="action-add-task" onclick="addTask()">Add</button>
+        </div>
+
+        <ul id="task-list"></ul>
+
+    </div>
+    
+    <script>
+        let task_input = document.querySelector(".task-input");
+        let tasklist = document.querySelector("#task-list");
+
+        const task_names = [];
+        function taskSelector(search_task_name){
+
+            for(let i = 0; i < task.length; i++){
+                if(task_name.includes(searchString)){
+                    return task[i];
+                    console.log("You need use letters in the name: "+ task_name)
+                }
+                else if(task[i].nametoUpperCase()){
+                    return task[i].nametoLowerCase();
+                }
+            }
+        }
+
+        function addTask(){
+            let new_list_item = document.createElement("li");
+            new_list_item.innerText = (task_input.value);
+            task_names.push(task_input.value);
+            tasklist.appendChild(new_list_item);
+        }
+        
+        document.querySelector("#search-input").addEventListener("input", function(evt){
+            console.log(this.value);
+            checkSelektor(this.value);
+
+        })
+
+        function checkSelektor(check_name){
+
+            for(let i = 0; i < task_names.length; i++){
+                if(task_names.includes(check_name))
+                console.log("I didn't found a matching task by the name: ")
+            {
+                }
+                else{
+                    console.log("I didn't found a matching task by the name: ")
+                }
+            }
+        }
+
+    </script>
+
+</body>
+</html>
