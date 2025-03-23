@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+
+    <div>
+
+        <p>Search</p>
+        <div>
+            <input id="search-input" type="search" placeholder="Search..">
+            <! -- req 2 add highlight mode checkbox here  -->
+        </div>
+
+        <p>Todo list app:</p>
+        <div>
+            <input class="task-input" type="text" placeholder="Enter task">
+            <button id="action-add-task" onclick="addTaskButtonOnClicked()">Add</button>
+            <!-- req 1 add highlight button here  -->
+            <button id="highlight" onclick="HighlightButton()">Search</button>
+        </div>
+
+
+        <ul id="task-list"></ul>
+
+    </div>
+    
+    <script>
+        let taskInput = document.querySelector(".task-input");
+        let tasklist = document.querySelector("#task-list");
+        let searchInput = document.querySelector("#search-input");
+
+        const task_names = [];
+        const search_name = [];
+
+        function addTask(taskDescription) {
+            let new_list_item = document.createElement("li");
+            new_list_item.innerText = taskDescription
+            tasklist.appendChild(new_list_item);
+            task_names.push(taskInput.value);
+            search_name.push(searchInput.value);
+        }
+
+        function addTaskButtonOnClicked(){
+            addTask(taskInput.value)
+        }
+
+        // adding fake tasks so you dont have to add new tasks manually everytime
+        addTask("Breakfast")
+        addTask("DriveToWork")
+        addTask("Work")
+        addTask("GoHome")
+        addTask("EatDinner")
+        addTask("Sleep")
+
+        document.querySelector("#search-input").addEventListener("input", function(evt){
+            // do something about user search request
+            checkSelektor(this.value);
+
+        })
+        
+        function HighlightButton(){
+            checkSelektor(searchInput.value)
+        }
+
+        function checkSelektor(search_name){
+            for(let i = 0; i < task_names.length; i++){
+                if(task_names.includes(search_name)){
+                    console.log("This task is in your task-list: " + search_name)
+                    }
+                else if(task_names.includes(!search_name)){}
+            }
+        }
+        
+        </script>
+
+</body>
+</html>
