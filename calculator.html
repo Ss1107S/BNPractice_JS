@@ -44,31 +44,115 @@
             margin-top: 20px;
             font-weight: bold;
         }
+        .radio-group {
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Student Score Calculator</h1>
         <p>Enter grades for three subjects (1-5):</p>
+        <p>Let's used addition</p>
         <input type="number" id="grade1" min="1" max="5" placeholder="Grade 1">
         <input type="number" id="grade2" min="1" max="5" placeholder="Grade 2">
         <input type="number" id="grade3" min="1" max="5" placeholder="Grade 3">
+        <div class="radio-group">
+            <input type="radio" id="add" name="operation" value="+" checked>
+            <label for="add">Add (+)</label>
+            <input type="radio" id="subtract" name="operation" value="-">
+            <label for="subtract">Subtract (-)</label>
+            <input type="radio" id="multiply" name="operation" value="*">
+            <label for="multiply">Multiply (*)</label>
+        </div>
         <button onclick="calculateScore()">Calculate Score</button>
         <div id="result"></div>
+
+        <p>Let's used subtraction</p>
+        <p>Enter grades for three subjects: first (1-20); second (1-10), third (1-5):</p>
+
+        <input type="number" id="grade4" min="1" max="20" placeholder="Grade 1">
+        <input type="number" id="grade5" min="1" max="10" placeholder="Grade 2">
+        <input type="number" id="grade6" min="1" max="5" placeholder="Grade 3">
+        <button onclick="calculateScore1()">Calculate Score</button>
+        <div id="result1"></div>
+
+        <p>Let's used multiplication</p>
+        <p>Enter grades for three subjects (1-5):</p>
+
+        <input type="number" id="grade7" min="1" max="5" placeholder="Grade 1">
+        <input type="number" id="grade8" min="1" max="5" placeholder="Grade 2">
+        <input type="number" id="grade9" min="1" max="5" placeholder="Grade 3">
+        <button onclick="calculateScore2()">Calculate Score</button>
+        <div id="result2"></div>
+
+        <p>Let's used division</p>
+        <p>Enter grades for two subjects: first(1-20); second(1-5):</p>
+        <input type="number" id="grade10" min="1" max="20" placeholder="Grade 1">
+        <input type="number" id="grade11" min="1" max="5" placeholder="Grade 2">
+        <button onclick="calculateScore3()">Calculate Score</button>
+        <div id="result3"></div>
     </div>
 
     <script>
+           
         function calculateScore() {
             const grade1 = parseInt(document.getElementById("grade1").value);
             const grade2 = parseInt(document.getElementById("grade2").value);
             const grade3 = parseInt(document.getElementById("grade3").value);
 
-            console.log(grade1);
             const result = grade1 + grade2 + grade3;
 
             document.getElementById("result").innerHTML = result;
+
+            checkScore()
+       }
+       
+       function checkScore(){
+            const grade1 = parseInt(document.getElementById("grade1").value);
+            const grade2 = parseInt(document.getElementById("grade2").value);
+            const grade3 = parseInt(document.getElementById("grade3").value);
+
+            if(0 <= grade1 > 5){
+            console.log("This is wrong number" + grade1);
+            }
        }
 
+       function calculateScore1() {
+            const grade4 = parseInt(document.getElementById("grade4").value);
+            const grade5 = parseInt(document.getElementById("grade5").value);
+            const grade6 = parseInt(document.getElementById("grade6").value);
+
+            const result1 = grade4 - grade5 - grade6;
+
+            document.getElementById("result1").innerHTML = result1;
+
+            checkScore()
+       }
+
+       function calculateScore2() {
+            const grade7 = parseInt(document.getElementById("grade7").value);
+            const grade8 = parseInt(document.getElementById("grade8").value);
+            const grade9 = parseInt(document.getElementById("grade9").value);
+
+            const result2 = grade7 * grade8 * grade9;
+
+            document.getElementById("result2").innerHTML = result2;
+
+            checkScore()
+       }
+       
+       function calculateScore3() {
+            const grade10 = parseInt(document.getElementById("grade10").value);
+            const grade11 = parseInt(document.getElementById("grade11").value);
+
+            const result3 = grade10 / grade11;
+
+            document.getElementById("result3").innerHTML = result3;
+
+            checkScore()
+       }
+       
     </script>
 </body>
 </html>
