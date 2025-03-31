@@ -1,88 +1,135 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-<style>
-    .hidden {
-        display: none;
-    }
-</style>
+    <title>Student Score Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        input[type="number"] {
+            width: 50px;
+            padding: 5px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .radio-group {
+            margin: 10px 0;
+        }
+    </style>
 </head>
-
 <body>
-
-    <div>
-
-        <p>Search</p>
-        <div>
-            <input id="search-input" type="search" placeholder="Search..">
-            <! -- req 2 add highlight mode checkbox here  -->
+    <div class="container">
+        <h1>Student Score Calculator</h1>
+        <p>Enter grades for three subjects (1-5):</p>
+        <input type="number" id="grade1" min="1" max="5" placeholder="Grade 1">
+        <input type="number" id="grade2" min="1" max="5" placeholder="Grade 2">
+        <input type="number" id="grade3" min="1" max="5" placeholder="Grade 3">
+        <div class="radio-group">
+            <input type="radio" id="add" name="operation" value="+" checked>
+            <label for="add">Add (+)</label>
+            <input type="radio" id="subtract" name="operation" value="-">
+            <label for="subtract">Subtract (-)</label>
+            <input type="radio" id="multiply" name="operation" value="*">
+            <label for="multiply">Multiply (*)</label>
         </div>
+        <button onclick="calculateScore()">Calculate Score</button>
+        <div id="result"></div>
 
-        <p>Todo list app:</p>
-        <div>
-            <input class="task-input" type="text" placeholder="Enter task">
-            <button id="action-add-task" onclick="addTaskButtonOnClicked()">Add</button>
-            <!-- req 1 add highlight button here  -->
-            <button id="highlight" onclick="HighlightButton()">Search</button>
-        </div>
-
-
-        <ul id="task-list"></ul>
-
-    </div>
-    
     <script>
-        let taskInput = document.querySelector(".task-input");
-        let tasklist = document.querySelector("#task-list");
-        let searchInput = document.querySelector("#search-input");
-
-        const task_names = [];
-        const search_name = [];
-
-        function addTask(taskDescription) {
-            let new_list_item = document.createElement("li");
-            new_list_item.innerText = taskDescription
-            tasklist.appendChild(new_list_item);
-            task_names.push(taskInput.value);
-            search_name.push(searchInput.value);
+           
+        function handleScore(){
+            if(document.querySelector("#add").checked)
+                return calculateScoreAdd();
+            if(document.querySelector("#subtract").checked)
+                return calculateScoreSubtract();
+            if(document.querySelector("#multiply").checked)
+                return calculateScoreMultiply();
         }
 
-        function addTaskButtonOnClicked(){
-            addTask(taskInput.value)
-        }
+        function calculateScoreAdd() {
+            const grade1 = parseInt(document.getElementById("grade1").value);
+            const grade2 = parseInt(document.getElementById("grade2").value);
+            const grade3 = parseInt(document.getElementById("grade3").value);
 
-        // adding fake tasks so you dont have to add new tasks manually everytime
-        addTask("Breakfast")
-        addTask("DriveToWork")
-        addTask("Work")
-        addTask("GoHome")
-        addTask("EatDinner")
-        addTask("Sleep")
+            const result = grade1 + grade2 + grade3;
 
-        document.querySelector("#search-input").addEventListener("input", function(evt){
-            // do something about user search request
-            checkSelektor(this.value);
+            document.getElementById("result").innerHTML = result;
 
-        })
-        
-        function HighlightButton(){
-            checkSelektor(searchInput.value)
-        }
+            checkScore()
+       }
+       
+        function calculateScoreSubtract() {
+            const grade1 = parseInt(document.getElementById("grade1").value);
+            const grade2 = parseInt(document.getElementById("grade2").value);
+            const grade3 = parseInt(document.getElementById("grade3").value);
 
-        function checkSelektor(search_name){
-            for(let i = 0; i < task_names.length; i++){
-                if(task_names.includes(search_name)){
-                    console.log("This task is in your task-list: " + search_name)
-                    }
-                else if(task_names.includes(!search_name)){}
+            const result = grade1 - grade2 - grade3;
+
+            document.getElementById("result").innerHTML = result;
+
+            checkScore()
+       }
+
+       function calculateScoreMultiply() {
+            const grade1 = parseInt(document.getElementById("grade1").value);
+            const grade2 = parseInt(document.getElementById("grade2").value);
+            const grade3 = parseInt(document.getElementById("grade3").value);
+
+            const result = grade1 * grade2 * grade3;
+
+            document.getElementById("result").innerHTML = result;
+
+            checkScore()
+       }
+
+       function checkScore(){
+            const grade1 = parseInt(document.getElementById("grade1").value);
+            const grade2 = parseInt(document.getElementById("grade2").value);
+            const grade3 = parseInt(document.getElementById("grade3").value);
+
+            if(!(1 >= grade1 < 5)){
+                console.log("This is wrong number" + grade1);
+                }
+            else if(!(1 >= grade2 < 5)){
+                console.log("This is wrong number" + grade2);
             }
-        }
-        
-        </script>
-
+            else (!(1 >= grade3 < 5))
+                console.log("This is wrong number" + grade3);
+            
+       }
+       
+    </script>
 </body>
 </html>
