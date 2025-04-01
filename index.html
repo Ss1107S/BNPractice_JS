@@ -3,133 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Score Calculator</title>
+    <title>Document</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-        input[type="number"] {
-            width: 50px;
-            padding: 5px;
-            margin-right: 10px;
-        }
-        button {
-            padding: 10px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        #result {
-            margin-top: 20px;
-            font-weight: bold;
-        }
-        .radio-group {
-            margin: 10px 0;
-        }
+        
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Student Score Calculator</h1>
-        <p>Enter grades for three subjects (1-5):</p>
-        <input type="number" id="grade1" min="1" max="5" placeholder="Grade 1">
-        <input type="number" id="grade2" min="1" max="5" placeholder="Grade 2">
-        <input type="number" id="grade3" min="1" max="5" placeholder="Grade 3">
-        <div class="radio-group">
-            <input type="radio" id="add" name="operation" value="+" checked>
-            <label for="add">Add (+)</label>
-            <input type="radio" id="subtract" name="operation" value="-">
-            <label for="subtract">Subtract (-)</label>
-            <input type="radio" id="multiply" name="operation" value="*">
-            <label for="multiply">Multiply (*)</label>
-        </div>
-        <button onclick="calculateScore()">Calculate Score</button>
-        <div id="result"></div>
+    
+    <section>
+        <pre>Task: when text is clicked, change text</pre>
+        <p class="first" onclick="first(); console.log(11)" >text that changes</p>
+    </section>
 
-    <script>
-           
-        function handleScore(){
-            if(document.querySelector("#add").checked)
-                return calculateScoreAdd();
-            if(document.querySelector("#subtract").checked)
-                return calculateScoreSubtract();
-            if(document.querySelector("#multiply").checked)
-                return calculateScoreMultiply();
-        }
 
-        function calculateScoreAdd() {
-            const grade1 = parseInt(document.getElementById("grade1").value);
-            const grade2 = parseInt(document.getElementById("grade2").value);
-            const grade3 = parseInt(document.getElementById("grade3").value);
+    <section>
+        <pre>Task: when list items are clicked, change container html contents or html contents of the list item</pre>
+        <div class="container">
+            <h1>html structure</h1>
+            <ul>
+                <li class="type-1">1. click = overwrite this list item</li>
+                <li class="type-2">2. click = overwrite whole container</li>
+                <li class="type-1">3. click = overwrite this list item</li>
+            </ul>
+        </div>    
+    </section>
 
-            const result = grade1 + grade2 + grade3;
+    <section>
+        <pre>Task: when image is clicked change the image</pre>
+        <img class="img" onclick="" src="th1.jfif" alt="image that changes">
+    </section>
 
-            document.getElementById("result").innerHTML = result;
+    <section>
+        <pre>Task: obtain value from input, print to console</pre>
+        <input type="text" class="input">
+        <button class="console" onclick="console.log();"></button>
+    </section>
 
-            checkScore()
-       }
-       
-        function calculateScoreSubtract() {
-            const grade1 = parseInt(document.getElementById("grade1").value);
-            const grade2 = parseInt(document.getElementById("grade2").value);
-            const grade3 = parseInt(document.getElementById("grade3").value);
+        <script>
+            document.querySelectorAll(".type-1").forEach(item => {
+                 item.addEventListener("click", second);
+                });
+            document.querySelector(".type-2").addEventListener("click", third)
+            document.querySelector(".img").addEventListener("click", fourth)
+            document.querySelector(".console").addEventListener("click", fifth)
 
-            const result = grade1 - grade2 - grade3;
-
-            document.getElementById("result").innerHTML = result;
-
-            checkScore()
-       }
-
-       function calculateScoreMultiply() {
-            const grade1 = parseInt(document.getElementById("grade1").value);
-            const grade2 = parseInt(document.getElementById("grade2").value);
-            const grade3 = parseInt(document.getElementById("grade3").value);
-
-            const result = grade1 * grade2 * grade3;
-
-            document.getElementById("result").innerHTML = result;
-
-            checkScore()
-       }
-
-       function checkScore(){
-            const grade1 = parseInt(document.getElementById("grade1").value);
-            const grade2 = parseInt(document.getElementById("grade2").value);
-            const grade3 = parseInt(document.getElementById("grade3").value);
-
-            if(!(1 >= grade1 < 5)){
-                console.log("This is wrong number" + grade1);
-                }
-            else if(!(1 >= grade2 < 5)){
-                console.log("This is wrong number" + grade2);
+            function first(){
+                document.querySelector(".first").innerText = "some text"; 
+// document.querySelectorAll("body > section")[0].querySelector("p").innerText = "some text"
             }
-            else (!(1 >= grade3 < 5))
-                console.log("This is wrong number" + grade3);
-            
-       }
+           
+            function second(){
+                document.querySelector(".type-1").innerHTML = /*html*/`
+                <a href="https://www.youtube.com/">
+                    youtube</a>`;
+            }
+
+            function third(){
+                document.querySelector(".type-2").innerText = "new text"
+            }
        
+            function fourth(){
+                document.querySelector(".img").src="th2.jfif";
+            }
+
+            function fifth(){
+                console.log(document.querySelector("input").value)
+//      let v = document.querySelector("input").value
+//     console.log(v)
+            }
+                
     </script>
 </body>
 </html>
