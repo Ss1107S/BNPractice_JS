@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Score Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        input[type="number"] {
+            width: 50px;
+            padding: 5px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .radio-group {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Score Calculator</h1>
+        <p>Enter grades for three subjects (1-5):</p>
+        <div class="inputs">
+            <input type="number" id="grade1" min="1" max="5" placeholder="Grade 1">
+            <input type="number" id="grade2" min="1" max="5" placeholder="Grade 2">
+            <input type="number" id="grade3" min="1" max="5" placeholder="Grade 3">
+        </div>
+
+        <div class="radio-group">
+            <input type="radio" id="add" name="operation" value="+" checked>
+            <label for="add">Add (+)</label>
+            <input type="radio" id="subtract" name="operation" value="-">
+            <label for="subtract">Subtract (-)</label>
+            <input type="radio" id="multiply" name="operation" value="*">
+            <label for="multiply">Multiply (*)</label>
+        </div>
+        <button class="calculateScore">Calculate Score</button>
+        <button class="action-add-input">Add Input</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function isNotNumber(val) {
+            return isNaN(val) || val < 1 || val > 5;
+        }
+        let Operations = {
+            sumAll(elements) {
+                let ret = 0;
+                for (let i = 0; i < elements.length; i++) {
+                    let val = parseInt(elements[i].value);
+                    if (isNotNumber(val)) continue;
+                    ret += val;
+                }
+                return ret;
+            },
+            subtractAll(elements) {
+                let ret = parseInt(elements[0].value) || 0;
+                for (let i = 1; i < elements.length; i++) {
+                    let val = parseInt(elements[i].value);
+                    if (isNotNumber(val)) continue;
+                    ret -= val;
+                }
+                return ret;
+            },
+            multiplyAll(elements) {
+                let ret = 1;
+                for (let i = 0; i < elements.length; i++) {
+                    let val = parseInt(elements[i].value);
+                    if (isNotNumber(val)) continue;
+                    ret *= val;
+                }
+                return ret;
+            }
+        }
+
+        let OperationType = {
+            SUM: "Sum",
+            SUBTRACT: "Subtract",
+            MULTIPLY: "Multiply"
+        }
+
+        function handleScore(){
+            if(document.getElementById("add").checked)
+                return OperationType.SUM;
+            if(document.getElementById("subtract").checked)
+                return OperationType.SUBTRACT;
+            if(document.getElementById("multiply").checked)
+                return OperationType.MULTIPLY;
+        }
+
+        function calculate(){
+            let elmInputs = document.querySelectorAll(".inputs > input")
+            let ot = handleScore();
+            let outNumber = 0;
+            
+            if(ot == OperationType.SUM) outNumber = Operations.sumAll(elmInputs)
+            else if(ot == OperationType.SUBTRACT) outNumber = Operations.subtractAll(elmInputs)
+            else if(ot == OperationType.MULTIPLY) outNumber = Operations.multiplyAll(elmInputs)
+            else throw "No available operation type: "+ ot;
+
+            let operationChunk = /*html*/`
+                <p> ${ot} RESULT: ${outNumber} </p>
+            `;
+            document.getElementById("result").innerHTML = operationChunk; 
+        }
+
+        document.querySelector(".calculateScore").addEventListener("click", calculate);
+
+        document.querySelector(".action-add-input").addEventListener("click", function () {
+            let elmInputs = document.querySelectorAll(".inputs > input");
+            let newElm = document.createElement("input");
+            newElm.type = "number";
+            newElm.min = "1";
+            newElm.max = "5";
+            newElm.placeholder = "Grade " + (elmInputs.length + 1);
+            document.querySelector(".inputs").appendChild(newElm);
+        });
+
+    </script>
+</body>
+</html>
