@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Address Book</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+    }
+    h1 {
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .output {
+      margin-top: 20px;
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 4px;
+    }
+    .output p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Address Book</h1>
+  
+  <!-- Add Contact Form -->
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Enter name">
+    
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" placeholder="Enter phone number">
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="Enter email">
+    
+    <button onclick="addContact()">Add Contact</button>
+  </div>
+
+  <!-- Find Contact Form -->
+  <div class="form-group">
+    <label for="searchName">Search Contact by Name:</label>
+    <input type="text" id="searchName" placeholder="Enter name to search">
+    
+    <button onclick="findContact()">Find Contact</button>
+  </div>
+
+  <!-- List Contacts -->
+  <button onclick="listContacts()">List All Contacts</button>
+
+  <!-- Output Section -->
+  <div class="output" id="output"></div>
+</div>
+
+<script>
+    
+  // Address Book Object
+  const addressBook = {
+    contacts: [],
+
+    
+    // Method to add a new contact
+    addContact(name, phone, email) {
+      this.contacts.push({name, phone, email});
+      return `${name} has been added to your addres book.`;
+    },
+
+    // Method to list all contacts
+    listContacts() {
+     
+
+    },
+
+    // Method to find a contact by name
+    findContact(name) {
+    //  for(const i = 0; i < contacts.length; i++){
+    //            if(contacts.includes(message)){
+    //                console.log("This contact is in your Address Book " + message)
+    //                }
+    //            else if(contacts.includes(!message)){}
+    //        }
+    },
+  };
+
+  // DOM Manipulation Functions
+  function addContact() {
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    let message;
+
+    if(name && phone && email){
+      message = addressBook.addContact(name, phone, email);
+    } else {
+      message = 'Please fill out all fields';
+    }
+    document.getElementById("output").innerHTML = `<p>${message}</p>`;
+
+    document.getElementById("name").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("email").value = "";
+  }
+  function listContacts() {
+    let users = []
+    for(i=0; i< addressBook.contacts.length; i++) {
+      users.push(addressBook.contacts[i].name);
+    }
+    document.getElementById("output").innerHTML = `<p>${users}</p>`;
+
+  }
+
+  function findContact() {
+   
+  }
+</script>
+</body>
+</html>
