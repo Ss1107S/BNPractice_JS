@@ -1,108 +1,191 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finance Tracker</title>
+  <style>
+    body {
+      font-family: system-ui, Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+    }
+    h1 {
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+ 
+    button {
+    background: #3a86ff;
+    box-shadow: 0 5px #43f;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 500;
+    height: 30px;
+    outline: none;
+    padding: 5px 10px;
+    position: relative;
+    transition: all .2s ease-in-out;
+    font-family: system-ui, Arial, sans-serif;
+}
+button:hover {
+    box-shadow: 0 3px #43f;
+    top: 1px;
+}
+    .output {
+      margin-top: 20px;
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 4px;
+    }
+    .output:empty {
+      display: none;
+    }
+    .output p {
+      margin: 0;
+    }
+  </style>
 </head>
 <body>
-    
-    <section>
-        <pre>Task: when text is clicked, change text</pre>
-        <p onclick="met1(); 1;" onclick="">text that changes</p>
-    </section>
-
-    <section>
-        <pre>
-            Task: when list items are clicked, change container html contents or html contents of the list item
-        </pre>
-        <div class="container">
-            <h1>html structure</h1>
-            <ul>
-                <li class="type-1">1. click = overwrite this list item</li>
-                <li class="type-2">2. click = overwrite whole container</li>
-                <li class="type-1">3. click = overwrite this list item</li>
-
-
-            </ul>
-        </div>    
-    </section>
-
-    <script>
-     //   let textToChange1 = document.querySelector("p")
-      //  console.log(textToChange1);
-      //  console.log("test");
-        // textToChange1.innerText = "New text 1231231"     
-
-      //  textToChange1.addEventListener('click',function () {
-           
-      //      textToChange1.innerText = "New text"
-      //      console.log("click test");
-      //  })
-        
-        let textToChange1 = document.getElementsByClassName("type-1")
-        console.log(textToChange1)
-        let textToChange1gs = document.querySelectorAll(".type-1")
-        console.log(textToChange1gs)
-        let textToClick2qs = document.querySelectorAll(".type-2")
-        console.log(textToClick2qs)
-        let divContainer2 = document.querySelector ("container")
-        console.log(divContainer2)
-        let OldHTMLContent;
-
-        /////Logic
-        texToEditT1qs.forEach(function (n1) {
-            n1.addEventListener('click', function(evt){
-                n1.innerText += '+1'
-            })
-            //n1.innerText += "+1";
-        })
-            textToClick2qs.addEventListener('click', function (evt){
-                let OldHTMLContent = String (divContainer2.innerHTML)
-                console.log(OldHTMLContent)
-                divContainer2.innerHTML = `
-                <p>html structure </p>
-                <button>Btn</button>
-                `
-                console.log(textToClick2qs)
-            } )
-            function bindEvent1(){
-                document.querySelector("type-2").addEventListener('click', cbk1)
-            }
-            bindEvent1();
-            function btnOnClick(){
-                divContainer2.innerHTML = OldHTMLContent;
-                bindEvent1();
-        }                
-    </script>
+<div class="container">
+  <h1>Finance Tracker</h1>
+ 
+  <div class="form-group">
+    <label for="expense">Amount:</label>
+    <input type="number" id="expense" placeholder="Enter amount" step="0.01">
+ 
+    <label for="category">Category:</label>
+    <select id="category">
+      <option value="groceries">Groceries</option>
+      <option value="utilities">Utilities</option>
+      <option value="entertainment">Entertainment</option>
+      <option value="transportation">Transportation</option>
+      <option value="others">Others</option>
+    </select>
+ 
+    <label for="desc">Description:</label>
+    <input type="text" id="desc" placeholder="Enter description">
+ 
+    <button id="add-expense">Add Expense</button>
+  </div>
+ 
+  <div class="form-group">
+    <label for="search_category">Search Expenses by Category:</label>
+    <select id="search_category">
+      <option value="">--All Categories--</option>
+      <option value="groceries">Groceries</option>
+      <option value="utilities">Utilities</option>
+      <option value="entertainment">Entertainment</option>
+      <option value="transportation">Transportation</option>
+      <option value="others">Others</option>
+    </select>
+ 
+    <button id="search-expenses">Search Expenses</button>
+  </div>
+ 
+  <button id="list-expenses">List All Expenses</button>
+ 
+  <div class="output" id="output"></div>
+</div>
+ 
 <script>
-    ///load variables
-    let clickActionOnImage = document.querySelector ("img")
-    let imageSwapCount = 1;
-    let imageSwapMax = 8;
-    ///logic
-    console.log(clickActionOnImage)
-    let runStringLocation = clickActionOnImage.src.search("Run")
-    console.log (clickActionOnImage.src.search("Run"))
+  const financeTracker = {
+    expenses: [],
+    
+    addExpense: (amount, category, description) => {
 
-    clickActionOnImage.addEventListener('click', function(evt){
-        console.log(clickActionOnImage)
-        console.log(this)
-        console.log(this == clickActionOnImage)
+        financeTracker.expenses.push({
+            amount: amount, category: category, description
+        });
 
-        //this.src = "img/Run6.png"
-        if(imageSwapCount >= imageSwapMax){
-            imageSwapCount = 0
-        }
-            this.src = `img/Run${++imageSwapCount}.png`
-            console.log(imageSwapCount)
-    })
+      // TODO: store expense in the arrow function
+      displayMessage(`Expense of ${amount}€ added under category "${category}"`);
+    },
+ 
+    listExpenses: () => {
+      if (financeTracker.expenses.length === 0) {
+        displayMessage("No expenses recorded yet.");
+      } else {
+        let expenseList = "<ul>";
+ 
+          financeTracker.expenses.forEach(expense => {
+            
+            expenseList += `<li> ${expense.amount}, ${expense.category}, ${expense.description}</li>`
 
+            // add expenses
+          });
+ 
+        expenseList += "</ul>";
+        console.log(expenseList)
+        displayMessage(expenseList);
+      }
+ 
+    },
+ 
+    searchExpense: (category) => {
+      const filteredExpenses = []; //<- to complete: filter through expenses by category
+      if (filteredExpenses.length === 0) {
+        displayMessage(/*to complete*/);
+      } else {
+        let expenseList = "<ul>";
+        filteredExpenses.forEach(expense => {
+          expenseList += `<li>${expense.amount}€ - ${expense.category}: ${expense.description}</li>`;
+        });
+        expenseList += "</ul>";
+        displayMessage(/*to complete*/);
+      }
+    }
+  };
+ 
+  // Utility arrow function:
+  const displayMessage = (message) => {
+    document.getElementById("output").innerHTML = message;
+  };
 
+  //let x = document.querySelector("#search_category");
+ 
+  // DOM event listeners:
+  document.getElementById('add-expense').addEventListener('click', () => {
+    // TODO: query DOM elements
+    let attribute1 = document.querySelector("#expense").value.trim()
+    let attribute2 = document.querySelector("#category").value.trim()
+    let attribute3 = document.querySelector("#desc").value.trim()
+
+    financeTracker.addExpense(attribute1, attribute2, attribute3);
+  });
+ 
+  document.getElementById('list-expenses').addEventListener('click', () => {
+    financeTracker.listExpenses();
+  });
+ 
+  document.getElementById('search-expenses').addEventListener('click', () => {
+    // ..
+    financeTracker.searchExpense(category);
+  });
+ 
+ 
 </script>
-
 </body>
 </html>
