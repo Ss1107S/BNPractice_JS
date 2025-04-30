@@ -1,191 +1,23 @@
-<!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Finance Tracker</title>
-  <style>
-    body {
-      font-family: system-ui, Arial, sans-serif;
-      margin: 20px;
-      padding: 0;
-    }
-    h1 {
-      color: #333;
-    }
-    .container {
-      max-width: 600px;
-      margin: auto;
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    label {
-      display: block;
-      margin-bottom: 5px;
-    }
-    input, select {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 12px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
- 
-    button {
-    background: #3a86ff;
-    box-shadow: 0 5px #43f;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    display: inline-block;
-    font-weight: 500;
-    height: 30px;
-    outline: none;
-    padding: 5px 10px;
-    position: relative;
-    transition: all .2s ease-in-out;
-    font-family: system-ui, Arial, sans-serif;
-}
-button:hover {
-    box-shadow: 0 3px #43f;
-    top: 1px;
-}
-    .output {
-      margin-top: 20px;
-      background-color: #f9f9f9;
-      padding: 15px;
-      border-radius: 4px;
-    }
-    .output:empty {
-      display: none;
-    }
-    .output p {
-      margin: 0;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz App</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="container">
-  <h1>Finance Tracker</h1>
- 
-  <div class="form-group">
-    <label for="expense">Amount:</label>
-    <input type="number" id="expense" placeholder="Enter amount" step="0.01">
- 
-    <label for="category">Category:</label>
-    <select id="category">
-      <option value="groceries">Groceries</option>
-      <option value="utilities">Utilities</option>
-      <option value="entertainment">Entertainment</option>
-      <option value="transportation">Transportation</option>
-      <option value="others">Others</option>
-    </select>
- 
-    <label for="desc">Description:</label>
-    <input type="text" id="desc" placeholder="Enter description">
- 
-    <button id="add-expense">Add Expense</button>
+  <div class="quiz-container" id="quiz">
+    <h2 id="question">Question text</h2>
+    <ul id="options">
+      <!-- Options will be inserted here -->
+    </ul>
+    <button id="nextBtn">Next</button>
+    <p id="score" class="hidden"></p>
+    <button id="restartBtn" class="hidden">Restart Quiz</button>
   </div>
- 
-  <div class="form-group">
-    <label for="search_category">Search Expenses by Category:</label>
-    <select id="search_category">
-      <option value="">--All Categories--</option>
-      <option value="groceries">Groceries</option>
-      <option value="utilities">Utilities</option>
-      <option value="entertainment">Entertainment</option>
-      <option value="transportation">Transportation</option>
-      <option value="others">Others</option>
-    </select>
- 
-    <button id="search-expenses">Search Expenses</button>
-  </div>
- 
-  <button id="list-expenses">List All Expenses</button>
- 
-  <div class="output" id="output"></div>
-</div>
- 
-<script>
-  const financeTracker = {
-    expenses: [],
-    
-    addExpense: (amount, category, description) => {
 
-        financeTracker.expenses.push({
-            amount: amount, category: category, description
-        });
+  <script src="scripts.js">
 
-      // TODO: store expense in the arrow function
-      displayMessage(`Expense of ${amount}€ added under category "${category}"`);
-    },
- 
-    listExpenses: () => {
-      if (financeTracker.expenses.length === 0) {
-        displayMessage("No expenses recorded yet.");
-      } else {
-        let expenseList = "<ul>";
- 
-          financeTracker.expenses.forEach(expense => {
-            
-            expenseList += `<li> ${expense.amount}, ${expense.category}, ${expense.description}</li>`
-
-            // add expenses
-          });
- 
-        expenseList += "</ul>";
-        console.log(expenseList)
-        displayMessage(expenseList);
-      }
- 
-    },
- 
-    searchExpense: (category) => {
-      const filteredExpenses = []; //<- to complete: filter through expenses by category
-      if (filteredExpenses.length === 0) {
-        displayMessage(/*to complete*/);
-      } else {
-        let expenseList = "<ul>";
-        filteredExpenses.forEach(expense => {
-          expenseList += `<li>${expense.amount}€ - ${expense.category}: ${expense.description}</li>`;
-        });
-        expenseList += "</ul>";
-        displayMessage(/*to complete*/);
-      }
-    }
-  };
- 
-  // Utility arrow function:
-  const displayMessage = (message) => {
-    document.getElementById("output").innerHTML = message;
-  };
-
-  //let x = document.querySelector("#search_category");
- 
-  // DOM event listeners:
-  document.getElementById('add-expense').addEventListener('click', () => {
-    // TODO: query DOM elements
-    let attribute1 = document.querySelector("#expense").value.trim()
-    let attribute2 = document.querySelector("#category").value.trim()
-    let attribute3 = document.querySelector("#desc").value.trim()
-
-    financeTracker.addExpense(attribute1, attribute2, attribute3);
-  });
- 
-  document.getElementById('list-expenses').addEventListener('click', () => {
-    financeTracker.listExpenses();
-  });
- 
-  document.getElementById('search-expenses').addEventListener('click', () => {
-    // ..
-    financeTracker.searchExpense(category);
-  });
- 
- 
-</script>
+  </script>
 </body>
 </html>
