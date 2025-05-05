@@ -1,23 +1,77 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quiz App</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0px;
+            font-family: sans-serif;
+        }
+        header{
+            margin: 10px;
+            padding: 10px;
+            background-color: grey;
+        }
+        nav{
+            display: flex;
+            gap: 10px;
+        }
+        img{
+            width: 100%;
+            max-width: 50px;
+            vertical-align: middle;
+            margin-left: 40px;
+        }
+        .bars{
+            margin-left: 30px;
+            margin-top: 20px;
+            cursor: pointer;
+            display: none;
+        }
+        .menu{
+            margin-left: 10px;
+            margin-top: 15px;
+        }
+
+        @media only screen and (max-width: 700px) {
+            .bars{
+                display: block;
+            }
+
+     }
+    </style>
 </head>
+
 <body>
-  <div class="quiz-container" id="quiz">
-    <h2 id="question">Question text</h2>
-    <ul id="options">
-      <!-- Options will be inserted here -->
-    </ul>
-    <button id="nextBtn">Next</button>
-    <p id="score" class="hidden"></p>
-    <button id="restartBtn" class="hidden">Restart Quiz</button>
-  </div>
+    
 
-  <script src="scripts.js">
+    <header>
+        <nav>
+            <div class="bars"><i class="fa-solid fa-bars action-menu"></i></div>
+            <img class="logo" src="logo.png" alt="">
+            <p>Google</p>
+            <div class="menu">
+                <a href="#home" class="home">Home</a>
+                <a href="#about" class="about" >About Us</a>
+                <a href="#contact" class="contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+<script>
+    document.querySelector('.action-menu').addEventListener('click', () => {
+        for
+        if (){
+            let attribute1= document.querySelector('.menu').value
+        }
+       
+        else {
+            
+            }
+    })
+</script>   
 
-  </script>
 </body>
 </html>
