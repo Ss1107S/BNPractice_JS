@@ -62,15 +62,17 @@
     </header>
 <script>
     document.querySelector('.action-menu').addEventListener('click', () => {
-        for
-        if (){
-            let attribute1= document.querySelector('.menu').value
-        }
-       
-        else {
-            
+        const menu = document.querySelector('.menu');
+        const  allBars= document.querySelector('.bars');
+
+        for(let i = 0; i < allBars.length; i++)
+            if (menu.style.display == 'none' || !menu.style.display){
+                menu.style.display == 'block';
             }
-    })
+            else {
+                menu.style.display == 'none';
+                }
+        })
 </script>   
 
 </body>
