@@ -10,69 +10,75 @@
             margin: 0px;
             font-family: sans-serif;
         }
+
         header{
             margin: 10px;
             padding: 10px;
             background-color: grey;
         }
+
         nav{
             display: flex;
+            align-items: center;
             gap: 10px;
         }
+
+        .menu{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
         img{
             width: 100%;
-            max-width: 50px;
+            max-width: 80px;
             vertical-align: middle;
-            margin-left: 40px;
         }
+        
         .bars{
-            margin-left: 30px;
-            margin-top: 20px;
             cursor: pointer;
             display: none;
         }
-        .menu{
-            margin-left: 10px;
-            margin-top: 15px;
-        }
-
+                
         @media only screen and (max-width: 700px) {
             .bars{
                 display: block;
             }
 
-     }
+            nav{
+                flex-direction: column;
+
+            }
+        }
     </style>
 </head>
 
 <body>
-    
-
     <header>
         <nav>
-            <div class="bars"><i class="fa-solid fa-bars action-menu"></i></div>
-            <img class="logo" src="logo.png" alt="">
-            <p>Google</p>
             <div class="menu">
-                <a href="#home" class="home">Home</a>
-                <a href="#about" class="about" >About Us</a>
-                <a href="#contact" class="contact">Contact</a>
+                <div class="bars"><i class="fa-solid fa-bars action-menu"></i></div> 
+                <img class="logo" src="logo.png" alt="">
+                <p>Google</p>
             </div>
+              <a href="home" class="home item">Home</a>
+              <a href="#aboum" class="about item"> About Us</a>
+              <a href="#contact" class="contact item">Contact</a>
         </nav>
     </header>
 <script>
-    document.querySelector('.action-menu').addEventListener('click', () => {
-        const menu = document.querySelector('.menu');
+     document.querySelector('.action-menu').addEventListener('click', () => {
+        const menu = document.querySelectorAll('.item');
         const  allBars= document.querySelector('.bars');
 
         for(let i = 0; i < allBars.length; i++)
-            if (menu.style.display == 'none' || !menu.style.display){
-                menu.style.display == 'block';
+            if (item.style.display == 'none' || !item.style.display){
+                item.style.display == 'block';
             }
             else {
-                menu.style.display == 'none';
+                item.style.display == 'none';
                 }
-        })
+    })
 </script>   
 
 </body>
