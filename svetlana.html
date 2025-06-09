@@ -6,79 +6,63 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <title>Document</title>
     <style>
-        body{
-            margin: 0px;
-            font-family: sans-serif;
-        }
-
-        header{
-            margin: 10px;
-            padding: 10px;
-            background-color: grey;
-        }
-
-        nav{
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .menu{
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        img{
-            width: 100%;
-            max-width: 80px;
-            vertical-align: middle;
-        }
         
-        .bars{
-            cursor: pointer;
-            display: none;
-        }
-                
-        @media only screen and (max-width: 700px) {
-            .bars{
-                display: block;
-            }
-
-            nav{
-                flex-direction: column;
-
-            }
-        }
+        
     </style>
 </head>
 
 <body>
     <header>
-        <nav>
-            <div class="menu">
-                <div class="bars"><i class="fa-solid fa-bars action-menu"></i></div> 
-                <img class="logo" src="logo.png" alt="">
-                <p>Google</p>
-            </div>
-              <a href="home" class="home item">Home</a>
-              <a href="#aboum" class="about item"> About Us</a>
-              <a href="#contact" class="contact item">Contact</a>
-        </nav>
+        
+        
     </header>
 <script>
-     document.querySelector('.action-menu').addEventListener('click', () => {
-        const menu = document.querySelectorAll('.item');
-        const  allBars= document.querySelector('.bars');
+let SlideShow = {
+    images: ["../logo.png", "img1.jpg"],
 
-        for(let i = 0; i < allBars.length; i++)
-            if (item.style.display == 'none' || !item.style.display){
-                item.style.display == 'block';
+    // create array of images
+    addImage(src) {
+
+    },
+
+    addDots(){
+    //forEach method for render each image with every index of dot
+
+    },
+    
+    Vision(){
+    //function for moving images with if else loop
+    }
+}
+    //===============================================
+
+
+    
+    function methodName(){
+    //method for connect each image with every dot  
+        images.forEach(first);
+        function first(){
+            arr[images] = dot.index;
+        }
+      //  document.querySelectorAll(".some-class").forEach(images => {
+      //      images.addEventListener("click", first);
+    }
+   
+    function second(){
+    //function for moving images
+        document.querySelector('.some-class').addEventListener('click', () => {
+        for(let i = 0; i < images.length; i++){
+            if (images.style.display == 'none' || !images.style.display){
+                images.style.display == 'block';
             }
             else {
-                item.style.display == 'none';
-                }
-    })
+                images.style.display == 'none';
+            }
+    }})      
+}
+
+
+
 </script>   
 
 </body>
