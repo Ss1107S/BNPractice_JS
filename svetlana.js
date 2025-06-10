@@ -60,10 +60,16 @@ let SlideShow = {
    
     Vision(){
         const imageElement = document.querySelector(".img");
-        if (!imageElement) return;
+    if (!imageElement) return;
 
+    imageElement.classList.add("fade-out");
+
+    setTimeout(() => {
         imageElement.src = this.images[this.index];
-        this.addDots();
+        imageElement.classList.remove("fade-out");
+    }, 300); 
+
+    this.addDots();
     },
     toNext(){
         this.index = (this.index + 1) % this.images.length;
