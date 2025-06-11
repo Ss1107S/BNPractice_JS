@@ -1,16 +1,25 @@
-.main{
-    position: relative;
-    width: 50%;
-    margin: 0 auto;
+body{
+    background-color: lightgray;
+
 }
+.main{
+    width: 100%;
+    margin: 10% auto;
+    top: 20%;
+}
+
 .image{
     margin: 0 auto;
+    position: relative;
+
 }
 
 .img{
     width: 100%;
+    height: 50vh;
     transition: opacity 0.5s ease-in-out;
     opacity: 1;
+    position: absolute;
 }
 
 .img.fade-out {
@@ -18,11 +27,14 @@
 }
 .actions{
     display: flex;
-    justify-content: space-between;
+    position: absolute;
+    bottom: 22%;
+    gap: 575px;
 }
 button{
-    background-color: blue;
-    width: 10ch;
+    background-color: royalblue;
+    width: 20ch;
+    border-radius: 10px;
 }
 
 .dot{
@@ -41,5 +53,5 @@ button{
 }
 
 .dot.active{
-    background-color: blue;
+    background-color: royalblue;
 }
