@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+
+    <div>
+
+        <p>Search</p>
+        <input id="search-input" type="search" placeholder="Search..">
+        <p>Todo list app:</p>
+        <div>
+            <input class="task-input" type="text" placeholder="Enter task">
+            <button id="action-add-task" onclick="addTask()">Add</button>
+            <button id="action-add-task-2">Add</button>
+        </div>
+
+
+        <ul id="task-list"></ul>
+
+    </div>
+    
+    <script>
+        let task_input = document.querySelector(".task-input");
+        let tasklist = document.querySelector("#task-list");
+
+        let players = [];
+        const document2 = {
+            playerSelector(player_name){
+
+                for(let i = 0; i < players.length; i++){
+                    if(players[i].name.includes(player_name)){
+                        return players[i];
+                    }
+                }
+                console.log("I didn't found a matching player by the name: "+ player_name)
+
+            }
+        }
+
+        console.log(
+            document2.playerSelector("Mehmet")
+        )
+
+
+        class Player {
+            constructor(name){
+                this.name = name;
+                this.example = 1;
+                this._x = 0;
+                this._y = 0;
+                this._z = 0;
+            }
+
+            kick_a_ball(){
+                let new_string;
+                console.log( new_string = (this.name +" kicked a ball") )
+            }
+
+            getName(){
+                return this.name.toUpperCase();
+            }
+            get x(){
+                console.log("obtaining x:", this._x)
+                return this._x + 0;
+            }
+            set x(new_x){
+                console.log("setting x(%d): %d", this._x, new_x)
+                this._x = new_x + 0;
+            }
+        }
+        Player.name1 = function(){
+            console.log(this.name + " called from Player.name")
+            console.log(this.example);
+        }
+
+        let player = new Player("Mehmet");
+        players.push(player);
+
+        console.log(
+            "Player name:", document2.playerSelector("Mehmet")
+        )
+
+
+        player.kick_a_ball();
+        player.x = 10;
+        console.log( player.x );
+
+        let num1 = new Number(44214.2153);
+        let str1 = new String("Example string");
+        console.log(num1.toFixed(10));
+
+        console.log( num1 + 10 ) 
+
+        console.log( str1.toLowerCase() );
+        console.log(
+            str1.toLowerCase()
+        );
+        console.log( player.getName() )
+        console.log( player.getName().toLowerCase() )
+
+        Player.name1();
+
+        let obj1 = {
+            method1(){
+                console.log('simple method')
+            }
+        }
+        try {
+        String.toLowerCase("some text");
+        } catch{ }
+
+        function addTask(){
+            let new_list_item = document.createElement("li");
+            new_list_item.innerText = (task_input.value);
+
+            tasklist.appendChild(new_list_item);
+        }
+
+        console.log( ("String" +" wrapped"+ " in braces").toLowerCase() )
+        console.log( "String" +(" Wrapped"+ " in braces").toLowerCase() )
+
+        console.log(`Template string example, ${str1}, ${"Example".toUpperCase()} ${12412 + 421}`)
+
+        document.querySelector("#action-add-task-2").addEventListener("click", function(evt){
+            let new_list_item = document.createElement("li");
+            new_list_item.innerHTML = (/*html*/`
+            <div class="wrap">
+                <p>${task_input.value}</p>
+                <button>Remove</button>
+            </div>
+            `);
+            tasklist.appendChild(new_list_item);
+        })
+
+        document.querySelector("#search-input").addEventListener("input", function(evt){
+            console.log(this.value);
+        })
+
+        document.querySelector("body").classList.add("example");
+        document.querySelector("body").classList.toggle("example", true);
+
+    </script>
+
+</body>
+</html>

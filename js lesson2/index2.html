@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Title</title>
+
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <div>
+
+            <p>Todo list app:</p>
+            <div>
+                <input type="text" placeholder="Enter task">
+                <button id="action-add-task" onclick="addTask()">Add</button>
+                <button id="action-add-task+2" onclick="addTask()">Add</button>
+
+            </div>
+
+            <ul id="task-list"></ul>
+
+            
+        </div>
+
+
+        <script>
+            let task_input = document.querySelector(".task-input");
+            let tasklist = document.querySelector("#task-list");
+
+            let players = [];
+            let document2 = {
+                querySelector(player_name){
+
+                    for(let i = 0; i < players.length; i++){
+                        if(players[i].name.includes(player_name)){
+                            return players[i];
+                        }
+                    }
+                    console.log("I didnt found a mathing")
+                }
+            }
+
+            class Player{
+                constructor(name){
+                    this.name = name;
+                    this.example = 1;
+                    this._x = 0;
+                    this._y = 0;
+                    this._z = 0;
+                }
+
+                kick_a_ball(){
+                    let new_string;
+                    console.log(new_string = (this.name+"kicked a ball"))
+                }
+
+                getName(){
+                    return this.name.toUpperCase();
+                }
+                get x(new_x){
+                    console.log("obtaining x", this._x)
+                    return this._x = new_x;
+                }
+                set x(new_x){
+                    console.log("setting x(%d): %d , this._x")
+                    this._x = new_x + 0;
+                }
+            }
+
+            Player.name1 = function(){
+                console.log(this.name + "called from Player.name")
+                console.log(this.example);
+            }
+
+            let player = new Player("Mehmet");
+            player.kick_a_ball();
+            player.x = 10;
+            console.log(player.x );
+
+            let num1 = new Number(44214.2153);
+            let str1 = new String("Example string");
+            console.log(str1.toFixed(10));
+
+            console.log( str1 + 10)
+
+            console.log( str1.toLowerCase());
+            console.log(
+                str1.toLowerCase()
+            );
+            console.log(player.getName() )
+            console.log(player.getName().toLowerCase() )
+
+            Player.name1();
+
+            let obj1 = {
+                method1() {
+                    console.log("simple method")
+                }
+            }
+            try{
+                String.toLowerCase("some text");
+            } catch{ }
+
+            function addTask(){
+                let new_list_item = document.createElement("li");
+                new_list_item.innerText = task_input.value;
+
+
+            }
+
+            console.log(("String" + "wrapped"+ " in brCES").toLocaleLowerCase())
+            console.log("String" + ("wrapped"+ " in brCES").toLocaleLowerCase())
+
+            console.log(`Template string example, $(str1), ${"Example".toUpperCase()} $(12412 + 421)`)
+
+            document.querySelector("#action-add-task").addEventListener("click", function(evt){
+                let new_list_item = document.createElement("li");
+                new_list_item.innerHTML = (/*html*/
+                <div class = "wrap">
+                    <p>${task-input.value} </p>
+                </div>
+            );
+            tasklist.appendChild(new_list_item);
+
+            })
+
+
+            
+
+</script>
+        
+    </body>
+    </html>
