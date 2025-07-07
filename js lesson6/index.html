@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    
+    <section>
+        <pre>Task: when text is clicked, change text</pre>
+        <p class="first" onclick="first(); console.log(11)" >text that changes</p>
+    </section>
+
+
+    <section>
+        <pre>Task: when list items are clicked, change container html contents or html contents of the list item</pre>
+        <div class="container">
+            <h1>html structure</h1>
+            <ul>
+                <li class="type-1">1. click = overwrite this list item</li>
+                <li class="type-2">2. click = overwrite whole container</li>
+                <li class="type-1">3. click = overwrite this list item</li>
+            </ul>
+        </div>    
+    </section>
+
+    <section>
+        <pre>Task: when image is clicked change the image</pre>
+        <img class="img" onclick="" src="th1.jfif" alt="image that changes">
+    </section>
+
+    <section>
+        <pre>Task: obtain value from input, print to console</pre>
+        <input type="text" class="input">
+        <button class="console" onclick="console.log();"></button>
+    </section>
+
+        <script>
+            document.querySelectorAll(".type-1").forEach(item => {
+                 item.addEventListener("click", second);
+                });
+            document.querySelector(".type-2").addEventListener("click", third)
+            document.querySelector(".img").addEventListener("click", fourth)
+            document.querySelector(".console").addEventListener("click", fifth)
+
+            function first(){
+                document.querySelector(".first").innerText = "some text"; 
+// document.querySelectorAll("body > section")[0].querySelector("p").innerText = "some text"
+            }
+           
+            function second(){
+                document.querySelector(".type-1").innerHTML = /*html*/`
+                <a href="https://www.youtube.com/">
+                    youtube</a>`;
+            }
+
+            function third(){
+                document.querySelector(".type-2").innerText = "new text"
+            }
+       
+            function fourth(){
+                document.querySelector(".img").src="th2.jfif";
+            }
+
+            function fifth(){
+                console.log(document.querySelector("input").value)
+//      let v = document.querySelector("input").value
+//     console.log(v)
+            }
+                
+    </script>
+</body>
+</html>
