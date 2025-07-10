@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Document</title>
+    <style>
+        #guests-table,
+        #guests-table th,
+        #guests-table td {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+        #events-table,
+        #events-table th,
+        #events-table td {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+    </style>
+    </head>
+
+<body style="margin: 20px;">
+<!--Add new guest name-->
+    <section>
+    <p style="margin-bottom: 5px; font-size: 14px; font-weight: 500;">Guest name:</p>
+    <input type="text" placeholder="Enter guest name" id="new_guest_name" style="background-color:rgb(245, 245, 245); border-radius: 5px; ">
+    <br>
+
+<!--Button Submit-->
+    <button id="add_new_guest" style="padding: 0px 5px; cursor: pointer; border: 3px solid blue; border-radius: 5px; color: gray;">Submit</button>
+</section>
+
+<!--Guests Table-->
+<table id="guests-table">
+    <thead>
+        <tr>
+            <th>
+                <span class="flex items-center">
+                    ID
+                    <svg class="w-4 h-4 ms-1" id="id" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                    </svg>
+                </span>
+            </th>
+            <th>
+                <span class="flex items-center">
+                    Guests Name
+                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                    </svg>
+                </span>
+            </th>
+        </tr>
+    </thead>
+    <tbody></tbody><!-- Start empty -->
+</table>
+
+<section>
+<br>
+
+<!-- Container for selected guest tags -->
+<div id="selected-guests" class="flex flex-wrap gap-2 mb-2">
+  <!-- Tags of selected names will be added here -->
+</div>
+
+<!-- Dropdown button -->
+<button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch" data-dropdown-placement="bottom" style="cursor: pointer;" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Dropdown search <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+</svg>
+</button>
+
+<!-- Dropdown menu -->
+<div id="dropdownSearch" class="z-10 hidden bg-white rounded-lg shadow-sm w-60 dark:bg-gray-700" style="cursor: pointer;">
+    <div class="p-3">
+     <label for="input-group-search" class="sr-only">Search</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <ul id="guest-list" class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownSearchButton">
+    </ul>
+</div>
+
+<!--Select date menu-->
+<form class="max-w-[8rem] mx-auto">
+    <label for="time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select date:</label>
+    <div class="relative">
+        <input type="date" id="time" style="cursor: pointer;" class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="2025-01-01" max="2025-12-31" value="2025-06-19" required />
+    </div>
+</form>
+
+<!--Submit button-->
+<br>
+<button id="submit_event" style="padding: 0px 5px; cursor: pointer; border: 3px solid blue; border-radius: 5px; color: gray;">
+  Submit Event
+</button>
+
+<!--Events Table-->
+</section>
+<table id="events-table">
+    <thead>
+        <tr>
+            <th>
+                <span class="flex items-center">
+                    ID
+                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                    </svg>
+                </span>
+            </th>
+            <th>
+                <span class="flex items-center">
+                    Guests List
+                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                    </svg>
+                </span>
+            </th>
+            <th data-type="date" data-format="YYYY/DD/MM">
+                <span class="flex items-center">
+                    Schedule Date
+                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                    </svg>
+                </span>
+            </th>
+            <th>
+                <span class="flex items-center">
+                    Number (random hash)
+                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4"/>
+                    </svg>
+                </span>
+            </th>
+        </tr>
+    </thead>
+    <tbody></tbody><!-- Start empty -->
+</table>
+    
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script src="main.js"></script>
+
+</body>
+</html>
